@@ -56,7 +56,16 @@ button {
 .card-inner.flipped {
   transform: rotateY(180deg);
 }
+.card-wrapper {
+  margin-bottom: 1rem;
+}
 
+.card-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
 .front, .back {
   position: absolute;
   width: 100%;
