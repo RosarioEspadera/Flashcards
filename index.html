@@ -14,6 +14,17 @@
   </header>
 
   <main>
+    <button id="add-card-btn">➕ Add Flashcard</button>
+
+<div id="add-card-modal" class="modal hidden">
+  <div class="modal-content">
+    <h2>Add a New Flashcard</h2>
+    <input type="text" id="front-input" placeholder="Front (question)" />
+    <input type="text" id="back-input" placeholder="Back (answer)" />
+    <button id="save-card-btn">Save Card</button>
+  </div>
+</div>
+
     <section id="deck-list">
       <!-- Flashcard decks will be dynamically added here -->
     </section>
