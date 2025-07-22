@@ -64,4 +64,36 @@ button {
 .flipped .back {
   transform: rotateY(0deg);
 }
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(31, 41, 55, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+
+input {
+  display: block;
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+}
 
