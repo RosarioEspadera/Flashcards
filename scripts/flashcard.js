@@ -42,15 +42,17 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Render card utility
-  function renderCard({ front, back }) {
-    const card = document.createElement('div');
-    card.className = 'flashcard';
-    card.innerHTML = `
-      <div class="front">${front}</div>
-      <div class="back">${back}</div>
-    `;
-    deckList.appendChild(card);
-  }
+  function renderCard({ front, back }, index) {
+  const card = document.createElement('div');
+  card.className = 'flashcard';
+  card.innerHTML = `
+    <div class="front">${front}</div>
+    <div class="back">${back}</div>
+    <button class="delete-btn" data-index="${index}">🗑 Delete</button>
+  `;
+  deckList.appendChild(card);
+}
+
 
   // Load existing cards
   const storedCards = JSON.parse(localStorage.getItem('flashcards') || '[]');
