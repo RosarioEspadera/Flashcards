@@ -20,7 +20,13 @@ const deckList = document.getElementById('deck-list');
 saveBtn.addEventListener('click', () => {
   const front = document.getElementById('front-input').value.trim();
   const back = document.getElementById('back-input').value.trim();
-
+  const closeBtn = document.getElementById('close-modal');
+  
+  
+  closeBtn.addEventListener('click', () => {
+  modal.classList.add('hidden');
+});
+  
   if (!front || !back) return;
 
   const newCard = { front, back };
@@ -47,10 +53,5 @@ function renderCard({ front, back }) {
   card.innerHTML = `<div class="front">${front}</div><div class="back">${back}</div>`;
   deckList.appendChild(card);
 }
-const closeBtn = document.getElementById('close-modal');
-
-closeBtn.addEventListener('click', () => {
-  modal.classList.add('hidden');
-});
 
 
