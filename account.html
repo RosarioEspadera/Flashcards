@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartFlash • Sign In</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+  <header>
+    <h1>SmartFlash</h1>
+    <p>Welcome back! Sign in or create your account below.</p>
+  </header>
+
+  <main>
+    <form id="auth-form">
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit" id="sign-in-btn">🔐 Sign In</button>
+      <button type="button" id="sign-up-btn">📝 Create Account</button>
+    </form>
+
+    <p id="auth-message"></p>
+  </main>
+
+  <script type="module" src="scripts/account.js"></script>
+</body>
+</html>
