@@ -44,8 +44,32 @@ button {
   background: var(--card-bg);
   border-radius: 12px;
   box-shadow: 0 6px 12px var(--card-shadow);
+  perspective: 1000px;
+}
+.card-inner {
+  position: relative;
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
 }
 
+.card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.front, .back {
+  position: absolute;
+  width: 100%;
+  backface-visibility: hidden;
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+.back {
+  transform: rotateY(180deg);
+  background-color: #e2e8f0;
+  color: #1e293b;
+}
 .modal {
   position: fixed;
   top: 0;
