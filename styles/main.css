@@ -33,4 +33,35 @@ button {
   border: none;
   border-radius: 6px;
 }
+.flashcard {
+  perspective: 1000px;
+  position: relative;
+  cursor: pointer;
+}
+
+.flashcard > div {
+  position: absolute;
+  width: 100%;
+  backface-visibility: hidden;
+  transition: transform 0.6s ease;
+}
+
+.flashcard .front {
+  transform: rotateY(0deg);
+}
+
+.flashcard .back {
+  transform: rotateY(180deg);
+  color: #1e293b;
+  background-color: #e2e8f0;
+  border-radius: 12px;
+}
+
+.flipped .front {
+  transform: rotateY(-180deg);
+}
+
+.flipped .back {
+  transform: rotateY(0deg);
+}
 
