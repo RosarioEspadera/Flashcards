@@ -21,18 +21,6 @@ header {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.6s ease;
 }
-.close-btn {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: transparent;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #475569;
-}
-
-
 button {
   margin-top: 1rem;
   display: block;
@@ -89,6 +77,7 @@ button {
 }
 
 .modal-content {
+  position: relative; /* ✅ Add this */
   background: white;
   padding: 2rem;
   border-radius: 12px;
@@ -107,4 +96,17 @@ input {
   border-radius: 8px;
   border: 1px solid #cbd5e1;
 }
-
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #475569;
+}
+.close-btn:hover {
+  color: #ef4444;
+  transform: scale(1.2);
+}
