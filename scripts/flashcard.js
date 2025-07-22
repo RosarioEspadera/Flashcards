@@ -66,7 +66,10 @@ function updateDeckSelect() {
   });
 
   // Render card
-  function renderCard({ front, back }, index) {
+ function renderCard({ front, back }, index) {
+  const cardWrapper = document.createElement('div');
+  cardWrapper.className = 'card-wrapper';
+
   const card = document.createElement('div');
   card.className = 'flashcard';
   card.innerHTML = `
@@ -74,19 +77,49 @@ function updateDeckSelect() {
       <div class="front">${front}</div>
       <div class="back">${back}</div>
     </div>
-    <button class="edit-btn" data-index="${index}">✏️ Edit</button>
-    <button class="delete-btn" data-index="${index}">🗑 Delete</button>
   `;
 
-  // Flip on click (ignore button clicks)
-  card.addEventListener('click', (e) => {
-    if (e.target.classList.contains('edit-btn') || e.target.classList.contains('delete-btn')) return;
+  const actions = document.createElement('div');
+  actions.className = 'card-actions';
+
+  const editBtn = document.createElement('button');
+  editBtn.className = 'edit-btn';
+  editBtn.textContent = '✏️ Edit';
+  editBtn.dataset.index = index;
+  editBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // prevent flip
+    const cards = JSON.parse(localStorage.getItem('flashcards') || '[]');
+    const cardData = cards[index];
+    const newFront = prompt('Edit question:', cardData.front);
+    const newBack = prompt('Edit answer:', cardData.back);
+    if (!newFront || !newBack) return;
+    cards[index] = { ...cardData, front: newFront.trim(), back: newBack.trim() };
+    localStorage.setItem('flashcards', JSON.stringify(cards));
+    loadCards();
+  });
+
+  const deleteBtn = document.createElement('button');
+  deleteBtn.className = 'delete-btn';
+  deleteBtn.textContent = '🗑 Delete';
+  deleteBtn.dataset.index = index;
+  deleteBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // prevent flip
+    const cards = JSON.parse(localStorage.getItem('flashcards') || '[]');
+    cards.splice(index, 1);
+    localStorage.setItem('flashcards', JSON.stringify(cards));
+    loadCards();
+  });
+
+  card.addEventListener('click', () => {
     card.querySelector('.card-inner').classList.toggle('flipped');
   });
 
-  deckList.appendChild(card);
+  actions.appendChild(editBtn);
+  actions.appendChild(deleteBtn);
+  cardWrapper.appendChild(card);
+  cardWrapper.appendChild(actions);
+  deckList.appendChild(cardWrapper);
 }
-
 
   // Load & manage cards
   function loadCards() {
