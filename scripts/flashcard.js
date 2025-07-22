@@ -67,8 +67,8 @@ function updateDeckSelect() {
 
   // Render card
  function renderCard({ front, back }, index) {
-  const cardWrapper = document.createElement('div');
-  cardWrapper.className = 'card-wrapper';
+  const wrapper = document.createElement('div');
+  wrapper.className = 'card-wrapper';
 
   const card = document.createElement('div');
   card.className = 'flashcard';
@@ -79,6 +79,12 @@ function updateDeckSelect() {
     </div>
   `;
 
+  const inner = card.querySelector('.card-inner');
+  card.addEventListener('click', (e) => {
+    if (e.target.classList.contains('edit-btn') || e.target.classList.contains('delete-btn')) return;
+    inner.classList.toggle('flipped');
+  });
+
   const actions = document.createElement('div');
   actions.className = 'card-actions';
 
@@ -87,7 +93,7 @@ function updateDeckSelect() {
   editBtn.textContent = '✏️ Edit';
   editBtn.dataset.index = index;
   editBtn.addEventListener('click', (e) => {
-    e.stopPropagation(); // prevent flip
+    e.stopPropagation();
     const cards = JSON.parse(localStorage.getItem('flashcards') || '[]');
     const cardData = cards[index];
     const newFront = prompt('Edit question:', cardData.front);
@@ -103,23 +109,20 @@ function updateDeckSelect() {
   deleteBtn.textContent = '🗑 Delete';
   deleteBtn.dataset.index = index;
   deleteBtn.addEventListener('click', (e) => {
-    e.stopPropagation(); // prevent flip
+    e.stopPropagation();
     const cards = JSON.parse(localStorage.getItem('flashcards') || '[]');
     cards.splice(index, 1);
     localStorage.setItem('flashcards', JSON.stringify(cards));
     loadCards();
   });
 
-  card.addEventListener('click', () => {
-    card.querySelector('.card-inner').classList.toggle('flipped');
-  });
-
   actions.appendChild(editBtn);
   actions.appendChild(deleteBtn);
-  cardWrapper.appendChild(card);
-  cardWrapper.appendChild(actions);
-  deckList.appendChild(cardWrapper);
+  wrapper.appendChild(card);
+  wrapper.appendChild(actions);
+  deckList.appendChild(wrapper);
 }
+
 
   // Load & manage cards
   function loadCards() {
