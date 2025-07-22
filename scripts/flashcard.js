@@ -9,9 +9,14 @@ flipBtn.addEventListener('click', () => {
 const addBtn = document.getElementById('add-card-btn');
 const modal = document.getElementById('add-card-modal');
 const saveBtn = document.getElementById('save-card-btn');
+  const closeBtn = document.getElementById('close-modal');
 
 addBtn.addEventListener('click', () => {
   modal.classList.remove('hidden');
+});
+
+closeBtn.addEventListener('click', () => {
+  modal.classList.add('hidden');
 });
 
 const deckList = document.getElementById('deck-list');
@@ -20,12 +25,6 @@ const deckList = document.getElementById('deck-list');
 saveBtn.addEventListener('click', () => {
   const front = document.getElementById('front-input').value.trim();
   const back = document.getElementById('back-input').value.trim();
-  const closeBtn = document.getElementById('close-modal');
-  
-  
-  closeBtn.addEventListener('click', () => {
-  modal.classList.add('hidden');
-});
   
   if (!front || !back) return;
 
