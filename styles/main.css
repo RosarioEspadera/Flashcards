@@ -57,7 +57,7 @@ button {
   transform: rotateY(180deg);
 }
 .card-wrapper {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .card-actions {
@@ -72,6 +72,9 @@ button {
   backface-visibility: hidden;
   padding: 1rem;
   border-radius: 12px;
+  background-color: var(--card-bg);
+  color: var(--text);
+  box-shadow: 0 4px 10px var(--card-shadow);
 }
 
 .back {
