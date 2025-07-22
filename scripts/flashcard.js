@@ -47,5 +47,10 @@ function renderCard({ front, back }) {
   card.innerHTML = `<div class="front">${front}</div><div class="back">${back}</div>`;
   deckList.appendChild(card);
 }
+const closeBtn = document.getElementById('close-modal');
+
+closeBtn.addEventListener('click', () => {
+  modal.classList.add('hidden');
+});
 
 
