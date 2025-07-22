@@ -24,14 +24,29 @@ document.addEventListener('DOMContentLoaded', () => {
   closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
 
   // Add new deck
-  addDeckBtn.addEventListener('click', () => {
-    const name = prompt('Enter new deck name:');
-    if (!name) return;
+ addDeckBtn.addEventListener('click', () => {
+  const name = prompt('Enter new deck name:');
+  if (!name) return;
+
+  const decks = JSON.parse(localStorage.getItem('decks') || '["default"]');
+  if (decks.includes(name)) return alert('Deck already exists.');
+
+  decks.push(name);
+  localStorage.setItem('decks', JSON.stringify(decks));
+  updateDeckSelect();
+});
+
+function updateDeckSelect() {
+  const decks = JSON.parse(localStorage.getItem('decks') || '["default"]');
+  deckSelect.innerHTML = '';
+  decks.forEach(deck => {
     const option = document.createElement('option');
-    option.value = name;
-    option.textContent = `📁 ${name}`;
+    option.value = deck;
+    option.textContent = `📁 ${deck}`;
     deckSelect.appendChild(option);
   });
+}
+
 
   // Save new card
   saveBtn.addEventListener('click', () => {
@@ -60,6 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
       <button class="edit-btn" data-index="${index}">✏️ Edit</button>
       <button class="delete-btn" data-index="${index}">🗑 Delete</button>
     `;
+     // 🌀 Flip toggle
+  card.addEventListener('click', (e) => {
+    // Prevent flip if edit/delete button was clicked
+    if (e.target.classList.contains('edit-btn') || e.target.classList.contains('delete-btn')) return;
+    card.classList.toggle('flipped');
+  });
     deckList.appendChild(card);
   }
 
