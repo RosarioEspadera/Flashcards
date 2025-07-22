@@ -4,41 +4,40 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SmartFlash</title>
-  <link rel="stylesheet" href="styles/reset.css" />
   <link rel="stylesheet" href="styles/main.css" />
 </head>
 <body>
   <header>
     <h1>SmartFlash</h1>
     <p class="subtitle">Study smarter, not harder</p>
+    <button id="theme-toggle">🌙 Toggle Theme</button>
   </header>
 
   <main>
+    <section>
+      <select id="deck-select">
+        <option value="default">📁 Default Deck</option>
+      </select>
+      <button id="add-deck-btn">➕ Add Deck</button>
+    </section>
+
     <button id="add-card-btn">➕ Add Flashcard</button>
 
-<div id="add-card-modal" class="modal hidden">
-  <div class="modal-content">
-    <h2>Add a New Flashcard</h2>
-    <input type="text" id="front-input" placeholder="Front (question)" />
-    <input type="text" id="back-input" placeholder="Back (answer)" />
-    <button id="save-card-btn">Save Card</button>
-    <button id="close-modal" class="close-btn">✖</button>
-  </div>
-</div>
-
-    <section id="deck-list">
-      <!-- Flashcard decks will be dynamically added here -->
-    </section>
-
-    <section id="flashcard-view" class="hidden">
-      <div class="flashcard">
-        <div class="front">What is a closure in JavaScript?</div>
-        <div class="back">A closure is a function that retains access to its lexical scope.</div>
+    <div id="add-card-modal" class="modal hidden">
+      <div class="modal-content">
+        <button id="close-modal" class="close-btn">✖</button>
+        <h2>Add a New Flashcard</h2>
+        <input type="text" id="front-input" placeholder="Front (question)" />
+        <input type="text" id="back-input" placeholder="Back (answer)" />
+        <button id="save-card-btn">Save Card</button>
       </div>
-      <button id="flip-btn">Flip</button>
-    </section>
+    </div>
+
+    <section id="deck-list"></section>
   </main>
+
   <script src="scripts/flashcard.js"></script>
 </body>
 </html>
+
 
