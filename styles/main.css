@@ -110,3 +110,6 @@ input {
   color: #ef4444;
   transform: scale(1.2);
 }
+.hidden {
+  display: none;
+}
