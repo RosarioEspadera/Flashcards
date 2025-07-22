@@ -67,22 +67,26 @@ function updateDeckSelect() {
 
   // Render card
   function renderCard({ front, back }, index) {
-    const card = document.createElement('div');
-    card.className = 'flashcard';
-    card.innerHTML = `
-      <div><strong>Q:</strong> <span contenteditable="false">${front}</span></div>
-      <div><strong>A:</strong> <span contenteditable="false">${back}</span></div>
-      <button class="edit-btn" data-index="${index}">✏️ Edit</button>
-      <button class="delete-btn" data-index="${index}">🗑 Delete</button>
-    `;
-     // 🌀 Flip toggle
+  const card = document.createElement('div');
+  card.className = 'flashcard';
+  card.innerHTML = `
+    <div class="card-inner">
+      <div class="front">${front}</div>
+      <div class="back">${back}</div>
+    </div>
+    <button class="edit-btn" data-index="${index}">✏️ Edit</button>
+    <button class="delete-btn" data-index="${index}">🗑 Delete</button>
+  `;
+
+  // Flip on click (ignore button clicks)
   card.addEventListener('click', (e) => {
-    // Prevent flip if edit/delete button was clicked
     if (e.target.classList.contains('edit-btn') || e.target.classList.contains('delete-btn')) return;
-    card.classList.toggle('flipped');
+    card.querySelector('.card-inner').classList.toggle('flipped');
   });
-    deckList.appendChild(card);
-  }
+
+  deckList.appendChild(card);
+}
+
 
   // Load & manage cards
   function loadCards() {
